@@ -6,6 +6,10 @@ module Trees
         def initialize
             initialize nil, [] of Tree(T)
         end
+
+        def count
+            0
+        end
     end
 
     class BinaryTree(T) < LimitedTree(T)
@@ -135,6 +139,26 @@ module Trees
             end
             res << @value
             res
+        end
+
+        def children_count
+            c = 0
+            if has_left?
+                c = 1
+            end
+            if has_right?
+                c += 1
+            end
+            c
+        end
+
+        # Number of all children recursively
+        def count
+            num = 1
+            @children.each do |child|
+                num += child.count
+            end
+            num
         end
     end
 

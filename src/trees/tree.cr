@@ -1,6 +1,17 @@
 module Trees
 
-    class Tree(T)
+    abstract class AbstractTree(T)
+        abstract def empty? : Bool
+        abstract def children_count
+        abstract def count
+        abstract def set(index, value)
+        abstract def get(index)
+        abstract def delete(index)
+        abstract def add(value)
+        abstract def add(position, value)
+    end
+
+    class Tree(T) < AbstractTree(T)
         property value : T | Nil
         getter children : Array(Tree(T))
 
@@ -51,6 +62,14 @@ module Trees
 
         def add(value : T)
             @children << Tree(T).new(value)
+        end
+
+        def add(index, value : T)
+            @children.insert index, Tree(T).new(value)
+        end
+
+        def add(index, value : Tree(T))
+            @children.insert index, value
         end
 
         def delete(child : Tree(T))
