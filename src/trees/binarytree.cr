@@ -22,6 +22,25 @@ module Trees
             end
         end
 
+        # Only works on sorted trees!
+        def find(value : T) : Bool
+            if @value.nil?
+                return false
+            end
+            if @value.as(T) == value
+                return true
+            elsif value < @value.as(T)
+                if has_left?
+                    return left!.find value
+                end
+            else
+                if has_right?
+                    return right!.find value
+                end
+            end
+            false
+        end
+
 
         def add_sorted(value : T)
             if @value.nil?

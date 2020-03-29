@@ -18,7 +18,7 @@ module Trees
         def initialize(@value : T | Nil = nil, @children = Array(Tree(T)).new)
         end
 
-        def empty?
+        def empty? : Bool
             @children.size == 0
         end
 
